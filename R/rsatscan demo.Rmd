@@ -1,0 +1,88 @@
+---
+title: "rsatscan intro"
+author: "Dan Weinberger"
+date: "February 19, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+#install.packages('rsatscan')
+#install.packages('rgdal')
+library(rsatscan)
+library(rgdal)
+
+```
+
+## Data
+The NYC fever data come pre-packaged with rsatscan. See the files below
+
+```{r cars}
+head(NYCfevergeo)
+head(NYCfevercas)
+```
+
+Read in shape file for mapping
+"dsn"" gives the folder where the .shp file is saved; layer gives the name of the .shp file. Note the folder must contain the .shp files as well as the .prj, .shx, .dbf files.
+```{r}
+getwd()
+shape.NYC <- readOGR(dsn = "./NYC shape files", layer = "geo_export_ef7f38de-fdc9-46c6-bf6b-36dcb40dfda8")
+```
+
+## Specify the parameters for SATSCAN and generate the input files needed
+Save in a temporary directory
+```{r}
+invisible(ss.options(reset=TRUE)) #Reset parameters
+```
+
+Parameters for SATSCAN
+```{r}
+ss.options(list(CaseFile="NYCfever.cas", PrecisionCaseTimes=3))
+ss.options(c("StartDate=2001/11/1","EndDate=2001/11/24"))
+ss.options(list(CoordinatesFile="NYCfever.geo", AnalysisType=4, ModelType=2, TimeAggregationUnits=3))
+ss.options(list(UseDistanceFromCenterOption="y", MaxSpatialSizeInDistanceFromCenter=3, NonCompactnessPenalty=0))
+ss.options(list(MaxTemporalSizeInterpretation=1, MaxTemporalSize=7))
+ss.options(list(ProspectiveStartDate="2001/11/24", ReportGiniClusters="n", LogRunToHistoryFile="n"))
+```
+
+Where to savethe output?
+```{r}
+td = tempdir()
+write.ss.prm(td, "NYCfever")
+write.cas(NYCfevercas, td, "NYCfever")
+write.geo(NYCfevergeo, td, "NYCfever")
+```
+
+
+#Run SATSCAN
+Save results in an object called "NYCfever"
+Need to point to directory on your computer where SATSCAN program is saved
+```{r}
+NYCfever = satscan(td, "NYCfever", sslocation="C:/Program Files (x86)/SaTScan")
+
+```
+
+## Summary of results
+
+```{r}
+summary(NYCfever)
+```
+
+#Cluster info
+```{r}
+#See the main results and info about each cluster
+NYCfever$main
+```
+
+#Map the results
+```{r}
+sp::plot(shape.NYC)  #Map NYC borough boundaries
+sp::plot(NYCfever$shapeclust, add=T, col='red', pch=16) #Overlay the SATSCAN cluster results
+```
+## View the SATSCAN results compared to Monte Carlo resampling
+```{r}
+#View the clusters vs the Monte Carlo simulations to see how unlikely the result is
+hist(unlist(NYCfever$llr), main="Monte Carlo")
+abline(v=NYCfever$col[,c("TEST_STAT")], col = "red")
+```

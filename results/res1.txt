@@ -1,0 +1,142 @@
+                                 _____________________________
+
+                                        SaTScan v9.4.4
+                                 _____________________________
+
+
+Program run on: Mon Feb 24 16:34:59 2020
+
+Prospective Space-Time analysis
+scanning for clusters with high rates
+using the Space-Time Permutation model.
+_______________________________________________________________________________________________
+
+SUMMARY OF DATA
+
+Study period.......................: 2001/11/1 to 2001/11/24
+Number of locations................: 192
+Total number of cases..............: 194
+_______________________________________________________________________________________________
+
+CLUSTERS DETECTED
+
+1.Location IDs included.: 11418, 11415, 11419, 11435, 11416, 11421, 11451, 11375, 11417
+  Coordinates / radius..: (40.699240 N, 73.831760 W) / 2.90 km
+  Time frame............: 2001/11/22 to 2001/11/24
+  Number of cases.......: 4
+  Expected cases........: 0.67
+  Observed / expected...: 5.97
+  Test statistic........: 3.845418
+  P-value...............: 0.355
+  Recurrence interval...: 3 days
+
+2.Location IDs included.: 11372
+  Coordinates / radius..: (40.751460 N, 73.883070 W) / 0 km
+  Time frame............: 2001/11/24 to 2001/11/24
+  Number of cases.......: 2
+  Expected cases........: 0.16
+  Observed / expected...: 12.13
+  Test statistic........: 3.164201
+  P-value...............: 0.709
+  Recurrence interval...: 1 day
+
+3.Location IDs included.: 10464, 10475, 10465, 10469, 10461, 10466, 10462, 10467, 11024, 10472
+  Coordinates / radius..: (40.862770 N, 73.793830 W) / 6.98 km
+  Time frame............: 2001/11/23 to 2001/11/24
+  Number of cases.......: 5
+  Expected cases........: 1.66
+  Observed / expected...: 3.00
+  Test statistic........: 2.192250
+  P-value...............: 0.979
+  Recurrence interval...: 1 day
+
+NOTE: The sequential Monte Carlo procedure was used to terminate the calculations after 141
+replications.
+
+_______________________________________________________________________________________________
+
+PARAMETER SETTINGS
+
+Input
+-----
+  Case File        : C:\Users\dmw63\Desktop\My documents h\TEACHING\CLUSTERS\SATSCAN\NYC syndromic space time\Data\NYCfevercas.csv
+  Time Precision   : Day
+  Start Time       : 2001/11/1
+  End Time         : 2001/11/24
+  Coordinates File : C:\Users\dmw63\Desktop\My documents h\TEACHING\CLUSTERS\SATSCAN\NYC syndromic space time\Data\NYCfevergeo.csv
+  Coordinates      : Latitude/Longitude
+
+Analysis
+--------
+  Type of Analysis        : Prospective Space-Time
+  Probability Model       : Space-Time Permutation
+  Scan for Areas with     : High Rates
+  Time Aggregation Units  : Day
+  Time Aggregation Length : 1
+
+Output
+------
+  Main Results File : C:\Users\dmw63\Desktop\My documents h\TEACHING\CLUSTERS\SATSCAN\NYC syndromic space time\results\res1.txt
+  Google Earth File : C:\Users\dmw63\Desktop\My documents h\TEACHING\CLUSTERS\SATSCAN\NYC syndromic space time\results\res1.kml
+
+Data Checking
+-------------
+  Temporal Data Check     : Check to ensure that all cases and controls are within the specified temporal study period.
+  Geographical Data Check : Check to ensure that all observations (cases, controls and populations) are within the specified geographical area.
+
+Spatial Neighbors
+-----------------
+  Use Non-Euclidian Neighbors file : No
+  Use Meta Locations File          : No
+  Multiple Coordinates Type        : Allow only one set of coordinates per location ID.
+
+Spatial Window
+--------------
+  Maximum Spatial Cluster Size : 50 percent of population at risk
+  Window Shape                 : Circular
+
+Temporal Window
+---------------
+  Minimum Temporal Cluster Size : 1 Day
+  Maximum Temporal Cluster Size : 50 percent of study period
+
+Space And Time Adjustments
+--------------------------
+  Adjust for Weekly Trends, Nonparametric : No
+
+Inference
+---------
+  P-Value Reporting                  : Default Combination
+  Number of Replications             : 999
+  Adjusted for Earlier Analyses      : No
+  Adjusting for More Likely Clusters : No
+
+Spatial Output
+--------------
+  Automatically Launch Google Earth         : Yes
+  Compress KML File into KMZ File           : No
+  Include All Location IDs in the Clusters  : Yes
+  Cluster Location Threshold - Separate KML : 1000
+  Report Hierarchical Clusters              : Yes
+  Criteria for Reporting Secondary Clusters : No Geographical Overlap
+  Restrict Reporting to Smaller Clusters    : No
+
+Temporal Graphs
+---------------
+  Produce Temporal Graphs : No
+
+Other Output
+------------
+  Report Critical Values  : No
+  Report Monte Carlo Rank : No
+
+Run Options
+-----------
+  Processer Usage   : All Available Proccessors
+  Suppress Warnings : No
+  Logging Analysis  : Yes
+_______________________________________________________________________________________________
+
+Program completed  : Mon Feb 24 16:34:59 2020
+Total Running Time : 0 seconds
+Processor Usage    : 8 processors

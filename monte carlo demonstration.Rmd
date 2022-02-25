@@ -1,0 +1,106 @@
+---
+title: "Monte carlo"
+author: "Dan Weinberger"
+date: "February 19, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rsatscan)
+```
+
+## The problem
+We have 2 regions, each with 25 municipalities each. We measure the number of cases per municipality and want to see if the average number of cases differs by region
+
+Lets start by simulating some data. Region 1 has an average of 10 cases/muni; region 2 has 12 cases per muni
+```{r cars}
+region1<-rpois(n=25, lambda=10)
+region2<-rpois(n=25, lambda=12)
+
+trans.red<-rgb(1,0,0, alpha=0.5)
+trans.blue<-rgb(0,0,1, alpha=0.5)
+
+hist(region1, col=trans.red, main='Histogram in the 2 regions')
+hist(region2, add=T, col=trans.blue)
+```
+
+#Calculate the mean number of cases in each region and their difference
+```{r}
+mean(region1)
+mean(region2)
+
+mean(region2)-mean(region1)
+
+```
+
+#Combine data from the two regions into a data frame
+```{r}
+region1.df<-cbind.data.frame('counts'=region1,'region'=rep(1, length(region1)))
+region2.df<-cbind.data.frame('counts'=region2,'region'=rep(2, length(region2)))
+combined.df<-rbind.data.frame(region1.df,region2.df)
+```
+
+#Now again calculate the summary statistics
+This time we will use split, apply, combine approach on the data frame
+```{r}
+df.split<-split(combined.df, combined.df$region)
+region.mean<-sapply(df.split, function(x) mean(x$counts))
+
+diff.mean.true<-region.mean[2]- region.mean[1]
+
+```
+
+#Now scramble the region assignment column
+Let's rerun it a few times and see what happens
+```{r}
+combined.df.shuffle<-combined.df
+combined.df.shuffle$reorder<- sample(combined.df.shuffle$region) #create a reshuffled version of region assigment
+#combined.df.shuffle$reorder
+df.split.shuffle<-split(combined.df.shuffle, combined.df.shuffle$reorder)
+region.mean<-sapply(df.split.shuffle, function(x) mean(x$counts))
+diff.mean<-region.mean[2]- region.mean[1]
+diff.mean
+```
+
+#Now let's do it 999 times
+```{r}
+set.seed(123)
+diff.mean.mc<-rep(NA, 999) #Make a vector of missing values
+for(i in 1:999){
+combined.df.shuffle<-combined.df
+combined.df.shuffle$reorder<- sample(combined.df.shuffle$region) #create a reshuffled version of region assigment
+#combined.df.shuffle$reorder
+df.split.shuffle<-split(combined.df.shuffle, combined.df.shuffle$reorder)
+region.mean<-sapply(df.split.shuffle, function(x) mean(x$counts))
+diff.mean.mc[i]<-region.mean[2]- region.mean[1]
+}
+hist(diff.mean.mc ,xlim=c(-2, 5))
+abline(v=diff.mean.true, col='red', lty=2)
+```
+
+## Calculating a P-value
+Determine what percent of the simulations had a value that was larger than the observed values
+```{r}
+N.greater.obs<-sum(diff.mean.mc > diff.mean.true ) #How many of simulations were greater than observed?
+p.value<- N.greater.obs/ length(diff.mean.mc) #What proportion of simulations greater than observed?
+print('P-value')
+p.value
+```
+
+
+## What does SATSCAN do?
+For the space-time permutation,
+1) Calculating the scan statistic over all time window and geographic region combinations
+2) Scramble the dates and calculate the statistics on the scrambled datasets
+3) Repeat 999 times
+4) compare the most extreme scan statistic from step 1 with the distribution from steps 2-3 
+
+```{r}
+head(NYCfevercas)
+
+scramble1<-NYCfevercas
+scramble1$scampledate<-sample(scramble1$date)
+head(scramble1)
+```
+

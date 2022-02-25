@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(rsatscan)
 library(rgdal)
-
+library(lubridate)
 library(readxl)
 library(zipcodeR)
 ```
@@ -46,21 +46,23 @@ write.csv(cases2, './Data/nyc_resp_spring2020.csv')
 ```
 
 
-## Data
-The NYC fever data come pre-packaged with rsatscan. See the files below
+## Data for rsatscan
 
-```{r cars}
-NYCfevercas <- read.csv('./Data/NYCfevercas.csv')
-NYCfevergeo <- read.csv('./Data/NYCfevergeo.csv')
-
-head(NYCfevergeo)
-head(NYCfevercas)
+case file just needs to have ZIP, date (Y/m/d)
+```{r}
+nyc_cas <- cases2[,c("Zip",'Count','Date')]
+nyc_cas$Date <- paste(year(cases2$Date), month(nyc_cas$Date),day(nyc_cas$Date), sep='/')
 ```
+
+geo file needs  to have one row per zip, with lat and lng
+```{r}
+nyc_geo <- unique(cases2[c('Zip', 'lat','lng')])
+```
+
 
 Read in shape file for mapping
 "dsn"" gives the folder where the .shp file is saved; layer gives the name of the .shp file. Note the folder must contain the .shp files as well as the .prj, .shx, .dbf files.
 ```{r}
-getwd()
 shape.NYC <- readOGR(dsn = "./Data/NYC shape files", layer = "geo_export_ef7f38de-fdc9-46c6-bf6b-36dcb40dfda8")
 ```
 
@@ -72,25 +74,25 @@ invisible(ss.options(reset=TRUE)) #Reset parameters
 
 Parameters for SATSCAN
 ```{r}
-ss.options(list(CaseFile="NYCfever.cas", PrecisionCaseTimes=3))
+ss.options(list(CaseFile="NYC_resp.cas", PrecisionCaseTimes=3))
 
-ss.options(c("StartDate=2001/11/1","EndDate=2001/11/24"))
+ss.options(c("StartDate=2020/02/15","EndDate=2020/03/20"))
 
-ss.options(list(CoordinatesFile="NYCfever.geo", AnalysisType=4, ModelType=2, TimeAggregationUnits=3))
+ss.options(list(CoordinatesFile="NYC_resp.geo", AnalysisType=4, ModelType=2, TimeAggregationUnits=3))
 
 ss.options(list(UseDistanceFromCenterOption="y", MaxSpatialSizeInDistanceFromCenter=3, NonCompactnessPenalty=0))
 
 ss.options(list(MaxTemporalSizeInterpretation=1, MaxTemporalSize=7))
 
-ss.options(list(ProspectiveStartDate="2001/11/24", ReportGiniClusters="n", LogRunToHistoryFile="n"))
+ss.options(list(ProspectiveStartDate="2020/03/10", ReportGiniClusters="n", LogRunToHistoryFile="n"))
 ```
 
 Where to savethe output?
 ```{r}
-td = tempdir()
-write.ss.prm(td, "NYCfever")
-write.cas(NYCfevercas, td, "NYCfever")
-write.geo(NYCfevergeo, td, "NYCfever")
+td = './Manual results/'
+write.ss.prm(td,  "NYC_resp")
+write.cas(nyc_cas, td, "NYC_resp")
+write.geo(nyc_geo, td, "NYC_resp")
 ```
 
 

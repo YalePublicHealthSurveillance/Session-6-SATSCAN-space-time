@@ -9,7 +9,42 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(rsatscan)
 library(rgdal)
+
+library(readxl)
+library(zipcodeR)
 ```
+
+
+## Download the ZIP-code level file from NYC
+Save as an .xlsx file to avoid formatting issues with their text files.
+```{r}
+
+d1 <- read_excel('./Data/nyc_spring_2020.xlsx')
+
+d1$Date <- as.Date(d1$Date)
+```
+
+Restrict to 65+ year olds, between mid Feb and mid-March
+```{r}
+d1 <- 
+  d1[d1$Dim1Name=='Zip' & d1$Dim2Value=="Ages 65+ years" &d1$Date>='2020-02-15' & d1$Date<='2020-03-20',]
+
+cases <- d1[,c('Date','Zip','Count')]
+```
+
+Geocode the ZIPs using the geocode_zip() function and merge the coordinates back in with the ZIPs
+
+```{r}
+coord1 <- geocode_zip(unique(cases$Zip))
+
+cases2 <- merge(cases, coord1, by.x='Zip', by.y='zipcode')
+```
+
+Export the case file
+```{r}
+write.csv(cases2, './Data/nyc_resp_spring2020.csv')
+```
+
 
 ## Data
 The NYC fever data come pre-packaged with rsatscan. See the files below
@@ -26,7 +61,7 @@ Read in shape file for mapping
 "dsn"" gives the folder where the .shp file is saved; layer gives the name of the .shp file. Note the folder must contain the .shp files as well as the .prj, .shx, .dbf files.
 ```{r}
 getwd()
-shape.NYC <- readOGR(dsn = "./NYC shape files", layer = "geo_export_ef7f38de-fdc9-46c6-bf6b-36dcb40dfda8")
+shape.NYC <- readOGR(dsn = "./Data/NYC shape files", layer = "geo_export_ef7f38de-fdc9-46c6-bf6b-36dcb40dfda8")
 ```
 
 ## Specify the parameters for SATSCAN and generate the input files needed
@@ -63,8 +98,7 @@ write.geo(NYCfevergeo, td, "NYCfever")
 Save results in an object called "NYCfever"
 Need to point to directory on your computer where SATSCAN program is saved
 ```{r}
-NYCfever = satscan(td, "NYCfever", sslocation="C:/Program Files (x86)/SaTScan")
-
+NYCfever = satscan(td, "NYCfever", sslocation = "C:/Program Files/SaTScan")
 ```
 
 ## Summary of results

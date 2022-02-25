@@ -7,18 +7,17 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir = normalizePath(".."))
-#install.packages('rsatscan')
-#install.packages('rgdal')
 library(rsatscan)
 library(rgdal)
-
 ```
 
 ## Data
 The NYC fever data come pre-packaged with rsatscan. See the files below
 
 ```{r cars}
+NYCfevercas <- read.csv('./Data/NYCfevercas.csv')
+NYCfevergeo <- read.csv('./Data/NYCfevergeo.csv')
+
 head(NYCfevergeo)
 head(NYCfevercas)
 ```
@@ -39,10 +38,15 @@ invisible(ss.options(reset=TRUE)) #Reset parameters
 Parameters for SATSCAN
 ```{r}
 ss.options(list(CaseFile="NYCfever.cas", PrecisionCaseTimes=3))
+
 ss.options(c("StartDate=2001/11/1","EndDate=2001/11/24"))
+
 ss.options(list(CoordinatesFile="NYCfever.geo", AnalysisType=4, ModelType=2, TimeAggregationUnits=3))
+
 ss.options(list(UseDistanceFromCenterOption="y", MaxSpatialSizeInDistanceFromCenter=3, NonCompactnessPenalty=0))
+
 ss.options(list(MaxTemporalSizeInterpretation=1, MaxTemporalSize=7))
+
 ss.options(list(ProspectiveStartDate="2001/11/24", ReportGiniClusters="n", LogRunToHistoryFile="n"))
 ```
 
@@ -75,12 +79,15 @@ summary(NYCfever)
 NYCfever$main
 ```
 
-#Map the results
+## Map the results
+
 ```{r}
 sp::plot(shape.NYC)  #Map NYC borough boundaries
 sp::plot(NYCfever$shapeclust, add=T, col='red', pch=16) #Overlay the SATSCAN cluster results
 ```
+
 ## View the SATSCAN results compared to Monte Carlo resampling
+
 ```{r}
 #View the clusters vs the Monte Carlo simulations to see how unlikely the result is
 hist(unlist(NYCfever$llr), main="Monte Carlo")

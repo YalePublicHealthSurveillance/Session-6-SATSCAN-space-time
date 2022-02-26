@@ -35,14 +35,22 @@ cases <- d1[,c('Date','Zip','Count')]
 Geocode the ZIPs using the geocode_zip() function and merge the coordinates back in with the ZIPs
 
 ```{r}
+data(zip_code_db, package='zipcodeR')
+
 coord1 <- geocode_zip(unique(cases$Zip))
 
-cases2 <- merge(cases, coord1, by.x='Zip', by.y='zipcode')
+cases2 <- merge(cases, zip_code_db[,c('zipcode','lat','lng','population')], 
+                by.x='Zip', by='zipcode')
 ```
 
 Export the case file
 ```{r}
 write.csv(cases2, './Data/nyc_resp_spring2020.csv')
+```
+
+
+```{r}
+
 ```
 
 

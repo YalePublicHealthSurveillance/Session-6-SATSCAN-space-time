@@ -4,7 +4,7 @@
                                  _____________________________
 
 
-Program run on: Fri Feb 25 17:43:38 2022
+Program run on: Sun Feb 27 16:23:30 2022
 
 Prospective Space-Time analysis
 scanning for clusters with high rates
@@ -82,13 +82,19 @@ Analysis
 Output
 ------
   Main Results File       : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\NYC_resp.txt
+  Cluster File            : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\NYC_resp.col.txt
+  Google Earth File       : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\NYC_resp.kml
   Google Maps File        : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\NYC_resp.clustermap.html
   Shapefile (Cluster)     : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\NYC_resp.clustermap.col.shp
-  Cluster File            : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\NYC_resp.clustermap.col.dbf
-  Stratified Cluster File : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\NYC_resp.clustermap.sci.dbf
-  Location File           : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\NYC_resp.clustermap.gis.dbf
-  Shapefile (Locations)   : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\NYC_resp.clustermap.gis.shp
-  Simulated LLRs File     : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\NYC_resp.clustermap.llr.dbf
+  Cartesian Graph File    : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\NYC_resp.cluster.html
+  Cluster File            : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\NYC_resp.cluster.col.dbf
+  Stratified Cluster File : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\NYC_resp.cluster.sci.txt
+  Stratified Cluster File : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\NYC_resp.cluster.sci.dbf
+  Location File           : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\NYC_resp.cluster.gis.txt
+  Location File           : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\NYC_resp.cluster.gis.dbf
+  Shapefile (Locations)   : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\NYC_resp.cluster.gis.shp
+  Simulated LLRs File     : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\NYC_resp.cluster.llr.txt
+  Simulated LLRs File     : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\NYC_resp.cluster.llr.dbf
 
 Data Checking
 -------------
@@ -145,6 +151,9 @@ Miscellaneous Analysis
 Spatial Output
 --------------
   Automatically Launch Map                  : Yes
+  Compress KML File into KMZ File           : No
+  Include All Location IDs in the Clusters  : Yes
+  Cluster Location Threshold - Separate KML : 1000
   Report Hierarchical Clusters              : Yes
   Criteria for Reporting Secondary Clusters : No Geographical Overlap
   Restrict Reporting to Smaller Clusters    : No
@@ -155,8 +164,9 @@ Temporal Graphs
 
 Other Output
 ------------
-  Report Critical Values  : No
-  Report Monte Carlo Rank : No
+  Report Critical Values     : No
+  Report Monte Carlo Rank    : No
+  Print ASCII Column Headers : No
 
 Run Options
 -----------
@@ -165,6 +175,6 @@ Run Options
   Logging Analysis  : No
 _______________________________________________________________________________________________
 
-Program completed  : Fri Feb 25 17:43:38 2022
-Total Running Time : 0 seconds
+Program completed  : Sun Feb 27 16:23:31 2022
+Total Running Time : 1 second
 Processor Usage    : 4 processors

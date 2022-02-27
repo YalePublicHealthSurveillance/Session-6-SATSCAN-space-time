@@ -4,7 +4,7 @@
                                  _____________________________
 
 
-Program run on: Fri Feb 25 17:17:45 2022
+Program run on: Sun Feb 27 16:21:51 2022
 
 Retrospective Space-Time analysis
 scanning for clusters with high rates
@@ -13,81 +13,97 @@ ________________________________________________________________________________
 
 SUMMARY OF DATA
 
-Study period.......................: 2020/2/15 to 2020/3/20
-Number of locations................: 133
-Total number of cases..............: 326
+Study period.......................: 2001/11/1 to 2001/11/24
+Number of locations................: 192
+Total number of cases..............: 194
 _______________________________________________________________________________________________
 
 CLUSTERS DETECTED
 
-1.Location IDs included.: 11213, 11216, 11238, 11233, 11225, 11212, 11221, 11203
-  Coordinates / radius..: (40.670000 N, 73.940000 W) / 2.38 km
-  Time frame............: 2020/3/18 to 2020/3/18
-  Number of cases.......: 8
-  Expected cases........: 1.35
-  Observed / expected...: 5.93
-  Test statistic........: 7.654791
-  P-value...............: 0.056
-
-2.Location IDs included.: 10030, 10031, 10027
-  Coordinates / radius..: (40.818000 N, 73.943000 W) / 1.68 km
-  Time frame............: 2020/3/8 to 2020/3/11
-  Number of cases.......: 10
-  Expected cases........: 2.87
-  Observed / expected...: 3.48
-  Test statistic........: 5.429058
-  P-value...............: 0.634
-
-3.Location IDs included.: 10309, 10312, 10306, 10314
-  Coordinates / radius..: (40.540000 N, 74.220000 W) / 8.91 km
-  Time frame............: 2020/3/5 to 2020/3/5
-  Number of cases.......: 3
-  Expected cases........: 0.22
-  Observed / expected...: 13.58
-  Test statistic........: 5.059277
-  P-value...............: 0.790
-
-4.Location IDs included.: 10465, 10461, 10462, 10472, 10473, 10464, 10475, 11357
-  Coordinates / radius..: (40.830000 N, 73.820000 W) / 4.52 km
-  Time frame............: 2020/3/4 to 2020/3/4
+1.Location IDs included.: 10454, 10455, 10451, 10035, 10037, 10030, 10029, 10456
+  Coordinates / radius..: (40.805490 N, 73.917000 W) / 2.70 km
+  Time frame............: 2001/11/8 to 2001/11/8
   Number of cases.......: 5
-  Expected cases........: 0.83
-  Observed / expected...: 5.99
-  Test statistic........: 4.813819
-  P-value...............: 0.887
+  Expected cases........: 0.40
+  Observed / expected...: 12.60
+  Test statistic........: 8.119521
+  P-value...............: 0.020
 
-5.Location IDs included.: 10467, 10469, 10466, 10468, 10458, 10463
-  Coordinates / radius..: (40.880000 N, 73.870000 W) / 3.54 km
-  Time frame............: 2020/3/12 to 2020/3/17
-  Number of cases.......: 18
-  Expected cases........: 8.25
-  Observed / expected...: 2.18
-  Test statistic........: 4.438419
-  P-value...............: 0.976
+2.Location IDs included.: 11379, 11374, 11373
+  Coordinates / radius..: (40.716920 N, 73.880330 W) / 2.07 km
+  Time frame............: 2001/11/10 to 2001/11/11
+  Number of cases.......: 4
+  Expected cases........: 0.46
+  Observed / expected...: 8.62
+  Test statistic........: 5.113791
+  P-value...............: 0.734
 
-NOTE: The sequential Monte Carlo procedure was used to terminate the calculations after 900
-replications.
+3.Location IDs included.: 11418, 11415, 11419, 11435, 11416, 11421, 11451, 11375, 11417
+  Coordinates / radius..: (40.699240 N, 73.831760 W) / 2.90 km
+  Time frame............: 2001/11/22 to 2001/11/23
+  Number of cases.......: 4
+  Expected cases........: 0.46
+  Observed / expected...: 8.62
+  Test statistic........: 5.113791
+  P-value...............: 0.734
 
+4.Location IDs included.: 11434
+  Coordinates / radius..: (40.676220 N, 73.775200 W) / 0 km
+  Time frame............: 2001/11/16 to 2001/11/16
+  Number of cases.......: 2
+  Expected cases........: 0.072
+  Observed / expected...: 27.71
+  Test statistic........: 4.725675
+  P-value...............: 0.914
 
-Note: The coordinates file contains location IDs with identical coordinates that were combined
-into one location. In the optional output files, combined locations are represented by a single
-location ID as follows:
------------------------------------------------------------------------------------------------
-10009 : 10010
-10028 : 10128
-10032 : 10033
-10034 : 10040
+5.Location IDs included.: 10304, 10301
+  Coordinates / radius..: (40.608000 N, 74.093490 W) / 1.84 km
+  Time frame............: 2001/11/15 to 2001/11/15
+  Number of cases.......: 2
+  Expected cases........: 0.072
+  Observed / expected...: 27.71
+  Test statistic........: 4.725675
+  P-value...............: 0.914
+
+6.Location IDs included.: 10460, 10457, 10462
+  Coordinates / radius..: (40.843800 N, 73.879980 W) / 1.83 km
+  Time frame............: 2001/11/9 to 2001/11/9
+  Number of cases.......: 3
+  Expected cases........: 0.25
+  Observed / expected...: 11.88
+  Test statistic........: 4.696100
+  P-value...............: 0.915
+
+7.Location IDs included.: 11050, 11024, 11030, 11023, 11021, 11020, 11363, 11359, 11042, 10464,
+                          11005, 11362, 11360, 11004, 11361, 11040, 10465, 11426, 11364, 11357,
+                          11358, 10475
+  Coordinates / radius..: (40.835800 N, 73.693820 W) / 11.97 km
+  Time frame............: 2001/11/4 to 2001/11/5
+  Number of cases.......: 3
+  Expected cases........: 0.28
+  Observed / expected...: 10.78
+  Test statistic........: 4.430018
+  P-value...............: 0.973
+
+8.Location IDs included.: 11226, 11218, 11225, 11203, 11210, 11230, 11215, 11213
+  Coordinates / radius..: (40.645290 N, 73.958440 W) / 3.46 km
+  Time frame............: 2001/11/5 to 2001/11/5
+  Number of cases.......: 4
+  Expected cases........: 0.70
+  Observed / expected...: 5.75
+  Test statistic........: 3.719788
+  P-value...............: 0.999
 _______________________________________________________________________________________________
 
 PARAMETER SETTINGS
 
 Input
 -----
-  Case File        : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Data\nyc_resp_spring2020.csv
+  Case File        : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Data\NYCfevercas.csv
   Time Precision   : Day
-  Start Time       : 2020/2/15
-  End Time         : 2020/3/20
-  Coordinates File : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Data\nyc_resp_spring2020.csv
+  Start Time       : 2001/11/1
+  End Time         : 2001/11/24
+  Coordinates File : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Data\NYCfevergeo.csv
   Coordinates      : Latitude/Longitude
 
 Analysis
@@ -187,6 +203,6 @@ Run Options
   Logging Analysis  : No
 _______________________________________________________________________________________________
 
-Program completed  : Fri Feb 25 17:17:52 2022
-Total Running Time : 7 seconds
+Program completed  : Sun Feb 27 16:21:59 2022
+Total Running Time : 8 seconds
 Processor Usage    : 4 processors

@@ -1,0 +1,172 @@
+                                 _____________________________
+
+                                        SaTScan v10.0.2
+                                 _____________________________
+
+
+Program run on: Sat Feb 26 18:04:55 2022
+
+Prospective Space-Time analysis
+scanning for clusters with high rates
+using the Discrete Poisson model.
+_______________________________________________________________________________________________
+
+SUMMARY OF DATA
+
+Study period.......................: 2020/2/15 to 2020/3/19
+Number of locations................: 133
+Population, averaged over time.....: 7527645
+Total number of cases..............: 511
+Annual cases / 100000..............: 72.9
+_______________________________________________________________________________________________
+
+CLUSTERS DETECTED
+
+1.Location IDs included.: 10021, 10065, 10028, 10128, 10022, 10023, 11106, 10029, 11102, 10019,
+                          10036, 10025, 10016, 10026, 11101, 10035, 11105, 11103, 10027, 10024,
+                          11222, 10011, 10009, 10010, 11377, 10003, 10014, 10030, 10454, 11370,
+                          10002, 10455, 11378, 10451, 10031, 11211, 10013, 11372, 10278, 11373,
+                          10038, 11369, 11205, 10456, 10032, 10033, 11206, 11201, 10452, 11237,
+                          11379, 10459, 11221, 11368, 10453, 11238
+  Coordinates / radius..: (40.770000 N, 73.960000 W) / 10.00 km
+  Time frame............: 2020/3/6 to 2020/3/19
+  Population............: 2887805
+  Number of cases.......: 141
+  Expected cases........: 80.72
+  Annual cases / 100000.: 127.4
+  Observed / expected...: 1.75
+  Relative risk.........: 2.03
+  Log likelihood ratio..: 22.801194
+  P-value...............: 0.00000016
+  Recurrence interval...: 122131 years
+_______________________________________________________________________________________________
+
+Warning: The following locations have a population totaling zero for the specified date(s).
+Location 10278, 2020/2/15
+
+Note: The coordinates file contains location IDs with identical coordinates that were combined
+into one location. In the optional output files, combined locations are represented by a single
+location ID as follows:
+-----------------------------------------------------------------------------------------------
+10009 : 10010
+10028 : 10128
+10032 : 10033
+10034 : 10040
+_______________________________________________________________________________________________
+
+PARAMETER SETTINGS
+
+Input
+-----
+  Case File        : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Data\nyc_resp_spring2020.csv
+  Population File  : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Data\nyc_resp_spring2020.csv
+  Time Precision   : Day
+  Start Time       : 2020/2/15
+  End Time         : 2020/3/19
+  Coordinates File : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Data\nyc_resp_spring2020.csv
+  Coordinates      : Latitude/Longitude
+
+Analysis
+--------
+  Type of Analysis        : Prospective Space-Time
+  Probability Model       : Discrete Poisson
+  Scan for Areas with     : High Rates
+  Time Aggregation Units  : Day
+  Time Aggregation Length : 7
+
+Output
+------
+  Main Results File     : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\Poisson\spatial_only.txt
+  Google Earth File     : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\Poisson\spatial_only.kml
+  Google Maps File      : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\Poisson\spatial_only.clustermap.html
+  Shapefile (Cluster)   : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\Poisson\spatial_only.clustermap.col.shp
+  Cartesian Graph File  : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\Poisson\spatial_only.cluster.html
+  Cluster File          : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\Poisson\spatial_only.cluster.col.dbf
+  Location File         : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\Poisson\spatial_only.cluster.gis.dbf
+  Shapefile (Locations) : C:\Users\DMW63\Desktop\R_Projects\Session-6-SATSCAN-space-time\Manual results\Poisson\spatial_only.cluster.gis.shp
+
+Data Checking
+-------------
+  Temporal Data Check     : Check to ensure that all cases and controls are within the specified temporal study period.
+  Geographical Data Check : Check to ensure that all observations (cases, controls and populations) are within the specified geographical area.
+
+Spatial Neighbors
+-----------------
+  Use Non-Euclidean Neighbors file : No
+  Use Meta Locations File          : No
+  Multiple Coordinates Type        : Allow only one set of coordinates per location ID.
+
+Locations Network
+-----------------
+  Use Locations Network File : No
+  Locations Network File     : 
+  Locations Network Purpose  : Network Definition
+
+Spatial Window
+--------------
+  Maximum Spatial Cluster Size     : 50 percent of population at risk
+  Include Purely Temporal Clusters : No
+  Window Shape                     : Circular
+
+Temporal Window
+---------------
+  Minimum Temporal Cluster Size   : 1 Day
+  Maximum Temporal Cluster Size   : 50 percent of study period
+  Include Purely Spatial Clusters : No
+
+Cluster Restrictions
+--------------------
+  Minimum Cases in Cluster for High Rates : 2
+  Restrict High Rate Clusters             : No
+
+Space And Time Adjustments
+--------------------------
+  Temporal Adjustment                     : None
+  Adjust for Weekly Trends, Nonparametric : No
+  Spatial Adjustment                      : None
+  Adjust for known relative risks         : No
+
+Inference
+---------
+  P-Value Reporting                  : Default Combination
+  Number of Replications             : 999
+  Adjusting for More Likely Clusters : No
+
+Cluster Drilldown
+-----------------
+  Standard Drilldown on Detected Clusters  : No
+  Bernoulli Drilldown on Detected Clusters : No
+
+Miscellaneous Analysis
+----------------------
+  Prospective Analysis Frequency : Same As Time Aggregation
+
+Spatial Output
+--------------
+  Automatically Launch Map                  : Yes
+  Compress KML File into KMZ File           : No
+  Include All Location IDs in the Clusters  : Yes
+  Cluster Location Threshold - Separate KML : 1000
+  Report Hierarchical Clusters              : Yes
+  Criteria for Reporting Secondary Clusters : No Geographical Overlap
+  Restrict Reporting to Smaller Clusters    : No
+
+Temporal Graphs
+---------------
+  Produce Temporal Graphs : No
+
+Other Output
+------------
+  Report Critical Values  : No
+  Report Monte Carlo Rank : No
+
+Run Options
+-----------
+  Processor Usage   : All Available Processors
+  Suppress Warnings : No
+  Logging Analysis  : No
+_______________________________________________________________________________________________
+
+Program completed  : Sat Feb 26 18:04:56 2022
+Total Running Time : 1 second
+Processor Usage    : 4 processors

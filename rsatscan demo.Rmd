@@ -105,35 +105,47 @@ write.geo(nyc_geo, td, "NYC_resp")
 
 
 #Run SATSCAN
-Save results in an object called "NYCfever"
+Save results in an object called "NYCresp"
 Need to point to directory on your computer where SATSCAN program is saved
 ```{r}
-NYCfever = satscan(td, "NYCfever", sslocation = "C:/Program Files/SaTScan")
-```
+NYCresp = satscan(td, "NYCresp", sslocation = "C:/Program Files/SaTScan/")
 
-## Summary of results
+#Summarize analysis
+summary(NYCresp) 
 
-```{r}
-summary(NYCfever)
-```
-
-#Cluster info
-```{r}
 #See the main results and info about each cluster
-NYCfever$main
-```
+NYCresp$main
 
-## Map the results
-
-```{r}
 sp::plot(shape.NYC)  #Map NYC borough boundaries
-sp::plot(NYCfever$shapeclust, add=T, col='red', pch=16) #Overlay the SATSCAN cluster results
+sp::plot(NYCresp$shapeclust, add=T, col='red', pch=16) #Overlay the SATSCAN cluster results
 ```
 
-## View the SATSCAN results compared to Monte Carlo resampling
+## Or Manually read in results after running SATSCAN with these parameters
 
 ```{r}
-#View the clusters vs the Monte Carlo simulations to see how unlikely the result is
-hist(unlist(NYCfever$llr), main="Monte Carlo")
-abline(v=NYCfever$col[,c("TEST_STAT")], col = "red")
+shape.results <- readOGR(dsn = "./Manual results/NYC_resp.gis.shp")
+shape.results <- readOGR(dsn = "./Manual results/NYC_resp.col.shp")
+shape.results.points <- readOGR(dsn = "./Manual results/NYC_resp.gis.shp")
+
+sp::plot(shape.NYC)  #Map NYC borough boundaries
+sp::plot(shape.results, add=T, col='red', pch=16) #Overlay the SATSCAN cluster results
+sp::plot(shape.results.points, add=T, col='red', pch=16) #Overlay the SATSCAN cluster results
+
 ```
+
+Monte Carlo results
+Test statistic for 999 simulations.
+
+```{r}
+mc.results <- read.table('./Manual Results/NYC_resp.llr.txt')
+
+hist(mc.results$V1, main="Monte Carlo")
+abline(v=shape.results$TEST_STAT[1], col='red')
+
+#Calculate the P-value!
+1 - sum(shape.results$TEST_STAT[1] > mc.results$V1) / length(mc.results$V1)
+
+
+```
+
+

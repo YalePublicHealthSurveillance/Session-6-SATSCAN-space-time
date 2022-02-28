@@ -19,7 +19,7 @@ library(zipcodeR)
 Save as an .xlsx file to avoid formatting issues with their text files.
 ```{r}
 
-d1 <- read_excel('./Data/nyc_spring_2020.xlsx')
+d1 <- read_excel('./Data/nyc_spring_2020_1.xlsx')
 
 d1$Date <- as.Date(d1$Date)
 ```

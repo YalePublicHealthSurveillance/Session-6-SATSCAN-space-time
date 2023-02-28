@@ -1,12 +1,17 @@
 ---
 title: "rsatscan intro"
 author: "Dan Weinberger"
-date: "February 25, 2021"
+date: "March 1, 2023"
 output: html_document
 ---
 
+
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+#library(githubinstall)
+#githubinstall('https://github.com/cran/rsatscan')
 library(rsatscan)
 library(rgdal)
 library(lubridate)

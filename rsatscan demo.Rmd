@@ -13,10 +13,11 @@ knitr::opts_chunk$set(echo = TRUE)
 #library(githubinstall)
 #githubinstall('https://github.com/cran/rsatscan')
 library(rsatscan)
-library(rgdal)
+#library(rgdal)
 library(lubridate)
 library(readxl)
 library(zipcodeR)
+library(ggplot2)
 ```
 
 
@@ -76,7 +77,7 @@ nyc_geo <- unique(cases2[c('Zip', 'lat','lng')])
 Read in shape file for mapping
 "dsn"" gives the folder where the .shp file is saved; layer gives the name of the .shp file. Note the folder must contain the .shp files as well as the .prj, .shx, .dbf files.
 ```{r}
-shape.NYC <- readOGR(dsn = "./Data/NYC shape files", layer = "geo_export_ef7f38de-fdc9-46c6-bf6b-36dcb40dfda8")
+shape.NYC <- sf::read_sf(dsn = "./Data/NYC shape files", layer = "geo_export_ef7f38de-fdc9-46c6-bf6b-36dcb40dfda8")
 ```
 
 ## Specify the parameters for SATSCAN and generate the input files needed
@@ -128,13 +129,24 @@ sp::plot(NYCresp$shapeclust, add=T, col='red', pch=16) #Overlay the SATSCAN clus
 ## Or Manually read in results after running SATSCAN with these parameters
 
 ```{r}
-shape.results <- readOGR(dsn = "./Manual results/NYC_resp.gis.shp")
-shape.results <- readOGR(dsn = "./Manual results/NYC_resp.col.shp")
-shape.results.points <- readOGR(dsn = "./Manual results/NYC_resp.gis.shp")
+shape.results1 <- sf::st_read(dsn = "./Manual results/NYC_resp.gis.shp")
+shape.results2 <- sf::st_read(dsn = "./Manual results/NYC_resp.col.shp")
+shape.results.points <- sf::st_read(dsn = "./Manual results/NYC_resp.gis.shp")
 
-sp::plot(shape.NYC)  #Map NYC borough boundaries
-sp::plot(shape.results, add=T, col='red', pch=16) #Overlay the SATSCAN cluster results
-sp::plot(shape.results.points, add=T, col='red', pch=16) #Overlay the SATSCAN cluster results
+shapefile_list <- list(shape.NYC,shape.results1,shape.results2,shape.results.points)
+
+# Base plot with the first shapefile
+p <- ggplot() +
+  geom_sf(data = shapefile_list[[1]], fill = "white", color = "black", alpha = 0.6)
+
+# Overlay remaining shapefiles with different colors
+for (i in 2:length(shapefile_list)) {
+  p <- p + geom_sf(data = shapefile_list[[i]], fill = NA, color = sample(colors(), 1), size = 0.8)
+}
+
+# Display the plot
+p + theme_minimal()
+
 
 ```
 
@@ -142,7 +154,7 @@ Monte Carlo results
 Test statistic for 999 simulations.
 
 ```{r}
-mc.results <- read.table('./Manual Results/NYC_resp.llr.txt')
+mc.results <- read.table('./Manual results/NYC_resp.llr.txt')
 
 hist(mc.results$V1, main="Monte Carlo")
 abline(v=shape.results$TEST_STAT[1], col='red')
